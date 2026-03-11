@@ -23,7 +23,6 @@ CELL_TYPE_MARKERS = {
         "PVALB",     # definitive marker
         "GAD1",      # GABAergic
         "GAD2",
-        "SST",       # included as negative control (marks different interneuron)
     ],
     "SST (Somatostatin)": [
         "SST",
@@ -65,6 +64,99 @@ CELL_TYPE_MARKERS = {
         "AIF1",      # IBA1
     ],
 }
+
+# ── expanded neuron subtype markers ────────────────────────────────────────
+# More specific neuron subtypes for fine-grained cell-type analysis.
+# Based on Tasic et al. 2018, Hodge et al. 2019, Allen Cell Types Database.
+
+NEURON_SUBTYPE_MARKERS = {
+    "PV": [
+        "PVALB",
+    ],
+    "SST": [
+        "SST",
+    ],
+    "VIP": [
+        "VIP",
+    ],
+    "Chandelier": [
+        "PVALB",
+        "UNC5B",
+        "NOG",
+        "RELN",
+    ],
+    "CCK (Cholecystokinin)": [
+        "CCK",
+        "CNR1",      # CB1 receptor, enriched in CCK+ interneurons
+        "GAD2",
+    ],
+    "NPY": [
+        "NPY",
+        "GAD1",
+    ],
+    "Calretinin (CR)": [
+        "CALB2",
+        "GAD2",
+    ],
+    "Calbindin (CB)": [
+        "CALB1",
+        "GAD1",
+    ],
+    "Neurogliaform": [
+        "GAD1",
+        "GAD2",
+        "RELN",
+    ],
+    "Pyramidal (upper layer)": [
+        "SLC17A7",   # VGLUT1
+        "CUX2",      # layer 2-4
+        "SATB2",
+    ],
+    "Pyramidal (deep layer)": [
+        "SLC17A7",   # VGLUT1
+        "TBR1",      # layer 5-6
+        "FEZF2",     # layer 5 subcortical projection
+        "BCL11B",    # CTIP2, layer 5
+    ],
+    "Pyramidal (L5 PT)": [
+        "SLC17A7",
+        "FEZF2",
+        "BCL11B",    # CTIP2
+        "PCP4",
+    ],
+    "Medium Spiny (D1)": [
+        "DRD1",      # D1 dopamine receptor
+        "PPP1R1B",   # DARPP-32
+        "TAC1",      # substance P (direct pathway)
+    ],
+    "Medium Spiny (D2)": [
+        "DRD2",      # D2 dopamine receptor
+        "PPP1R1B",   # DARPP-32
+        "PENK",      # enkephalin (indirect pathway)
+    ],
+    "Cholinergic": [
+        "CHAT",      # choline acetyltransferase
+        "SLC5A7",    # choline transporter
+    ],
+    "Dopaminergic": [
+        "TH",        # tyrosine hydroxylase
+        "SLC6A3",    # DAT
+        "DDC",       # DOPA decarboxylase
+    ],
+    "Serotonergic": [
+        "TPH2",      # tryptophan hydroxylase 2
+        "SLC6A4",    # SERT
+    ],
+    "Noradrenergic": [
+        "DBH",       # dopamine beta-hydroxylase
+        "SLC6A2",    # NET
+    ],
+}
+
+# Flat list of all neuron subtype marker genes
+ALL_NEURON_MARKERS = sorted(set(
+    g for genes in NEURON_SUBTYPE_MARKERS.values() for g in genes
+))
 
 # Flat list of all marker genes
 ALL_MARKER_GENES = sorted(set(

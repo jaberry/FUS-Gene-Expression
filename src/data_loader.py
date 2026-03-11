@@ -247,6 +247,10 @@ def get_microarray_region_means(
         return pd.DataFrame()
 
     combined = pd.concat(all_data, ignore_index=True)
-    region_means = combined.groupby("region")[gene_symbols].mean()
+    # Only select gene columns that actually exist in the data
+    available_genes = [g for g in gene_symbols if g in combined.columns]
+    if not available_genes:
+        return pd.DataFrame()
+    region_means = combined.groupby("region")[available_genes].mean()
 
     return region_means.T  # genes x regions
